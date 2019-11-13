@@ -1,0 +1,16 @@
+#cloud-config
+%{ if length(ssh_keys) > 0 }
+ssh_authorized_keys:
+%{ for ssh_key in ssh_keys }
+- ${ssh_key}
+%{ endfor }
+%{ endif }
+runcmd:
+  - apt-get update
+  - apt-get install -y apt-transport-https software-properties-common curl
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - apt-get update
+  - apt-get -y install docker-ce
+  - usermod -G docker -a ubuntu
+  - ${registration_command} --internal-address $(curl -s http://instance-data/latest/meta-data/local-ipv4)
