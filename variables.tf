@@ -21,6 +21,18 @@ variable "worker_instance_type" {
   type        = string
 }
 
+variable "master_node_count" {
+  default     = 3
+  description = "Number of Master nodes to provision"
+  type        = number
+}
+
+variable "worker_node_count" {
+  default     = 3
+  description = "Number of Worker nodes to provision"
+  type        = number
+}
+
 variable "ssh_keys" {
   default     = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5O7k6gRYCU7YPkCH6dyXVW10izMAkDAQtQxNxdRE22 drpebcak"]
   description = "Public SSH keys to give to instances"
