@@ -15,9 +15,9 @@ locals {
   cloud_provider_name   = var.cloud_provider_name
   backup_interval_hours = var.backup_interval_hours
   backup_retention      = var.backup_retention
-  rancher_token_key     = ""
-  rancher_api_url       = ""
-  rancher_deploy_user   = ""
+  rancher_token_key     = var.rancher_token_key
+  rancher_api_url       = var.rancher_api_url
+  rancher_deploy_user   = var.rancher_deploy_user
 }
 
 provider "aws" {
