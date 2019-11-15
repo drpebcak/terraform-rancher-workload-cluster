@@ -1,6 +1,6 @@
 ### Master Nodes
 resource "aws_iam_instance_profile" "cloud_provider_master" {
-  name_prefix = "${local.name}"
+  name_prefix = local.name
   role        = aws_iam_role.cloud_provider_master.name
 
   lifecycle {
@@ -9,7 +9,7 @@ resource "aws_iam_instance_profile" "cloud_provider_master" {
 }
 
 resource "aws_iam_role" "cloud_provider_master" {
-  name_prefix = "${local.name}"
+  name_prefix = local.name
 
   assume_role_policy = <<EOF
 {
@@ -34,7 +34,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "cloud_provider_master" {
-  name_prefix = "${local.name}"
+  name_prefix = local.name
   role        = aws_iam_role.cloud_provider_master.id
 
   policy = <<EOF
@@ -110,7 +110,7 @@ EOF
 
 ### Worker Nodes
 resource "aws_iam_instance_profile" "cloud_provider_worker" {
-  name_prefix = "${local.name}"
+  name_prefix = local.name
   role        = aws_iam_role.cloud_provider_worker.name
 
   lifecycle {
@@ -119,7 +119,7 @@ resource "aws_iam_instance_profile" "cloud_provider_worker" {
 }
 
 resource "aws_iam_role" "cloud_provider_worker" {
-  name_prefix = "${local.name}"
+  name_prefix = local.name
 
   assume_role_policy = <<EOF
 {
@@ -144,7 +144,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "cloud_provider_worker" {
-  name_prefix = "${local.name}"
+  name_prefix = local.name
   role        = aws_iam_role.cloud_provider_worker.id
 
   policy = <<EOF
