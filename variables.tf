@@ -36,7 +36,7 @@ variable "worker_node_count" {
 variable "ssh_keys" {
   default     = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5O7k6gRYCU7YPkCH6dyXVW10izMAkDAQtQxNxdRE22 drpebcak"]
   description = "Public SSH keys to give to instances"
-  type        = list
+  type        = list(string)
 }
 
 variable "cluster_description" {
@@ -82,4 +82,9 @@ variable "rancher_api_url" {
 variable "rancher_deploy_user" {
   description = "ID of Deploy user inside Rancher"
   type        = string
+}
+
+variable "private_subnets" {
+  type        = list(string)
+  description = "List of private subnet ids"
 }

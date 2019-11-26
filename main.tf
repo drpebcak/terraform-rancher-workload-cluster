@@ -18,6 +18,7 @@ locals {
   rancher_token_key     = var.rancher_token_key
   rancher_api_url       = var.rancher_api_url
   rancher_deploy_user   = var.rancher_deploy_user
+  private_subnets       = var.private_subnets
 }
 
 provider "aws" {

@@ -1,25 +1,3 @@
-module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "2.17.0"
-
-  name = local.name
-  cidr = "10.106.0.0/16"
-
-  azs             = ["${local.aws_region}a", "${local.aws_region}b", "${local.aws_region}c"]
-  public_subnets  = ["10.106.1.0/24", "10.106.2.0/24", "10.106.3.0/24"]
-  private_subnets = ["10.106.4.0/24", "10.106.5.0/24", "10.106.6.0/24"]
-
-  create_database_subnet_group = false
-
-  enable_dns_hostnames = true
-  enable_dns_support   = true
-  enable_nat_gateway   = true
-
-  tags = {
-    "Name" = local.name
-  }
-}
-
 resource "aws_s3_bucket" "etcd_backups" {
   bucket        = "${local.name}-etcd-backup"
   acl           = "private"
@@ -40,7 +18,7 @@ resource "aws_s3_bucket" "etcd_backups" {
 
 resource "aws_security_group" "cluster" {
   name   = "${local.name}-cluster"
-  vpc_id = module.vpc.vpc_id
+  vpc_id = local.vpc_id
 }
 
 resource "aws_security_group_rule" "cluster_all_self" {
@@ -126,7 +104,7 @@ resource "aws_autoscaling_group" "master" {
   desired_capacity    = local.master_node_count
   max_size            = local.master_node_count
   min_size            = local.master_node_count
-  vpc_zone_identifier = module.vpc.private_subnets
+  vpc_zone_identifier = local.private_subnets
 
   launch_template {
     id      = aws_launch_template.master.id
@@ -178,7 +156,7 @@ resource "aws_autoscaling_group" "worker" {
   desired_capacity    = local.worker_node_count
   max_size            = local.worker_node_count
   min_size            = local.worker_node_count
-  vpc_zone_identifier = module.vpc.private_subnets
+  vpc_zone_identifier = local.private_subnets
 
   launch_template {
     id      = aws_launch_template.worker.id

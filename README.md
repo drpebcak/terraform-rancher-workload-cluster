@@ -12,10 +12,11 @@
 | master\_instance\_type | Instance Types for K8S Master nodes | string | `"m5a.large"` | no |
 | master\_node\_count | Number of Master nodes to provision | number | `"3"` | no |
 | name | Name to identify Kubernetes cluster | string | n/a | yes |
+| private\_subnets | List of private subnet ids | list(string) | n/a | yes |
 | rancher\_api\_url | URL for Rancher API | string | n/a | yes |
 | rancher\_deploy\_user | ID of Deploy user inside Rancher | string | n/a | yes |
 | rancher\_token\_key | API Token for Rancher Admin | string | n/a | yes |
-| ssh\_keys | Public SSH keys to give to instances | list | `[ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5O7k6gRYCU7YPkCH6dyXVW10izMAkDAQtQxNxdRE22 drpebcak" ]` | no |
+| ssh\_keys | Public SSH keys to give to instances | list(string) | `[ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5O7k6gRYCU7YPkCH6dyXVW10izMAkDAQtQxNxdRE22 drpebcak" ]` | no |
 | worker\_instance\_type | Instance Types for K8S Worker nodes | string | `"m5a.large"` | no |
 | worker\_node\_count | Number of Worker nodes to provision | number | `"3"` | no |
 
