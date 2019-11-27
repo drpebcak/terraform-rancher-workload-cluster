@@ -94,7 +94,7 @@ resource "aws_launch_template" "master" {
 
     tags = {
       Name                                  = "${local.name}-master"
-      "kubernetes.io/cluster/${local.name}" = "true"
+      "kubernetes.io/cluster/${local.name}" = "owned"
     }
   }
 }
@@ -146,7 +146,7 @@ resource "aws_launch_template" "worker" {
 
     tags = {
       Name                                  = "${local.name}-worker"
-      "kubernetes.io/cluster/${local.name}" = "true"
+      "kubernetes.io/cluster/${local.name}" = "owned"
     }
   }
 }

@@ -33,6 +33,12 @@ variable "worker_node_count" {
   type        = number
 }
 
+variable "deploy_user_enabled" {
+  default     = true
+  type        = bool
+  description = "Define whether to give permissions for a deploy user"
+}
+
 variable "ssh_keys" {
   default     = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5O7k6gRYCU7YPkCH6dyXVW10izMAkDAQtQxNxdRE22 drpebcak"]
   description = "Public SSH keys to give to instances"
@@ -84,7 +90,12 @@ variable "rancher_deploy_user" {
   type        = string
 }
 
+variable "vpc_id" {
+  type        = string
+  description = "VPC ID for this cluster to be created in."
+}
+
 variable "private_subnets" {
   type        = list(string)
-  description = "List of private subnet ids"
+  description = "A list of private subnets to create ec2 instances in"
 }
