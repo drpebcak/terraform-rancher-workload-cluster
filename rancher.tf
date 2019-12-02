@@ -40,7 +40,7 @@ resource "rancher2_etcd_backup" "cluster" {
 resource "rancher2_cluster_role_template_binding" "deploy" {
   count            = local.deploy_user_enabled
   name             = "deploy"
-  role_template_id = "cluster-member"
+  role_template_id = "cluster-owner"
   cluster_id       = rancher2_cluster_sync.cluster.id
   user_id          = local.rancher_deploy_user
 }
