@@ -152,6 +152,7 @@ resource "aws_iam_role_policy" "cloud_provider_worker" {
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "cloudprovider",
       "Effect": "Allow",
       "Action": [
         "ec2:DescribeInstances",
@@ -163,6 +164,18 @@ resource "aws_iam_role_policy" "cloud_provider_worker" {
         "ecr:DescribeRepositories",
         "ecr:ListImages",
         "ecr:BatchGetImage"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "vaultunseal",
+      "Effect": "Allow",
+      "Action": [
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:DescribeKey"
       ],
       "Resource": [
         "*"
