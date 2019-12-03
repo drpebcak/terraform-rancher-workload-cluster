@@ -82,7 +82,7 @@ resource "aws_launch_template" "master" {
 
   network_interfaces {
     delete_on_termination = true
-    security_groups       = [aws_security_group.cluster.id]
+    security_groups       = concat([aws_security_group.cluster.id], local.extra_master_security_groups)
   }
 
   tags = {
@@ -134,7 +134,7 @@ resource "aws_launch_template" "worker" {
 
   network_interfaces {
     delete_on_termination = true
-    security_groups       = [aws_security_group.cluster.id]
+    security_groups       = concat([aws_security_group.cluster.id], local.extra_worker_security_groups)
   }
 
   tags = {

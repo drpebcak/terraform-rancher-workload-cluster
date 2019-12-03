@@ -99,3 +99,15 @@ variable "private_subnets" {
   type        = list(string)
   description = "A list of private subnets to create ec2 instances in"
 }
+
+variable "extra_worker_security_groups" {
+  default     = []
+  type        = list(string)
+  description = "A list of extra security groups to assign to worker nodes"
+}
+
+variable "extra_master_security_groups" {
+  default     = []
+  type        = list(string)
+  description = "A list of extra security groups to assign to master nodes"
+}
