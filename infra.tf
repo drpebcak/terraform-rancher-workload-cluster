@@ -19,6 +19,9 @@ resource "aws_s3_bucket" "etcd_backups" {
 resource "aws_security_group" "cluster" {
   name   = "${local.name}-cluster"
   vpc_id = local.vpc_id
+  tags = {
+    "kubernetes.io/cluster/${var.name}" = "owned"
+  }
 }
 
 resource "aws_security_group_rule" "cluster_all_self" {
