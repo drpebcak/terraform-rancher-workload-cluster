@@ -12,6 +12,20 @@ resource "rancher2_cluster" "cluster" {
     cloud_provider {
       name = local.cloud_provider_name
     }
+    services {
+      kubelet {
+        extra_args = local.kubelet_extra_args
+      }
+      kube_api {
+        extra_args = local.kube_api_extra_args
+      }
+      kube_controller {
+        extra_args = local.kube_controller_extra_args
+      }
+      scheduler {
+        extra_args = local.scheduler_extra_args
+      }
+    }
   }
 }
 

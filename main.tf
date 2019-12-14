@@ -24,6 +24,11 @@ locals {
 
   extra_master_security_groups = var.extra_master_security_groups
   extra_worker_security_groups = var.extra_worker_security_groups
+
+  scheduler_extra_args       = var.scheduler_extra_args
+  kube_controller_extra_args = var.kube_controller_extra_args
+  kube_api_extra_args        = var.kube_api_extra_args
+  kubelet_extra_args         = var.kubelet_extra_args
 }
 
 provider "aws" {

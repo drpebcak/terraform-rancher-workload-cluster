@@ -111,3 +111,27 @@ variable "extra_master_security_groups" {
   type        = list(string)
   description = "A list of extra security groups to assign to master nodes"
 }
+
+variable "scheduler_extra_args" {
+  default     = null
+  type        = map
+  description = "extra_args for kube-scheduler"
+}
+
+variable "kube_controller_extra_args" {
+  default     = null
+  type        = map
+  description = "extra_args for kube-controller"
+}
+
+variable "kube_api_extra_args" {
+  default     = null
+  type        = map
+  description = "extra_args for kube-api"
+}
+
+variable "kubelet_extra_args" {
+  default     = null
+  type        = map
+  description = "extra_args for kubelet"
+}
