@@ -52,24 +52,6 @@ resource "rancher2_cluster_sync" "cluster" {
   cluster_id = rancher2_cluster.cluster.id
 }
 
-# resource "rancher2_etcd_backup" "cluster" {
-#   backup_config {
-#     enabled        = true
-#     interval_hours = local.backup_interval_hours
-#     retention      = local.backup_retention
-
-#     s3_backup_config {
-#       access_key  = aws_iam_access_key.etcd_backup_user.id
-#       bucket_name = aws_s3_bucket.etcd_backups.id
-#       endpoint    = "s3.${aws_s3_bucket.etcd_backups.region}.amazonaws.com"
-#       region      = aws_s3_bucket.etcd_backups.region
-#       secret_key  = aws_iam_access_key.etcd_backup_user.secret
-#     }
-#   }
-#   cluster_id = rancher2_cluster_sync.cluster.id
-#   name       = "${local.name}-etcd-backup"
-# }
-
 resource "rancher2_cluster_role_template_binding" "deploy" {
   count            = local.deploy_user_enabled
   name             = "deploy"
