@@ -52,7 +52,7 @@ variable "cluster_description" {
 }
 
 variable "kubernetes_version" {
-  default     = "v1.15.5-rancher1-2"
+  default     = "v1.17.0-rancher1-2"
   description = "Version of Kubernetes to install"
   type        = string
 }
