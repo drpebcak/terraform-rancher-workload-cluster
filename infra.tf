@@ -97,17 +97,12 @@ resource "aws_launch_template" "master" {
     security_groups       = concat([aws_security_group.cluster.id], local.extra_master_security_groups)
   }
 
-  tags = {
-    Name = "${local.name}-master"
-  }
+  tags = local.master_tags
 
   tag_specifications {
     resource_type = "instance"
 
-    tags = {
-      Name                                  = "${local.name}-master"
-      "kubernetes.io/cluster/${local.name}" = "owned"
-    }
+    tags = local.master_tags
   }
 }
 
@@ -149,17 +144,12 @@ resource "aws_launch_template" "worker" {
     security_groups       = concat([aws_security_group.cluster.id], local.extra_worker_security_groups)
   }
 
-  tags = {
-    Name = "${local.name}-worker"
-  }
+  tags = local.worker_tags
 
   tag_specifications {
     resource_type = "instance"
 
-    tags = {
-      Name                                  = "${local.name}-worker"
-      "kubernetes.io/cluster/${local.name}" = "owned"
-    }
+    tags = local.worker_tags
   }
 }
 

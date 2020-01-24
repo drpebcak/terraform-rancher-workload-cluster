@@ -135,3 +135,15 @@ variable "kubelet_extra_args" {
   type        = map
   description = "extra_args for kubelet"
 }
+
+variable "master_tags" {
+  default     = {}
+  type        = map
+  description = "Map of tags for master nodes to merge with defaults"
+}
+
+variable "worker_tags" {
+  default     = {}
+  type        = map
+  description = "Map of tags for worker nodes to merge with defaults"
+}
