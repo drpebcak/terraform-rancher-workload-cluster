@@ -21,3 +21,7 @@ output "worker_instance_profile" {
 output "worker_security_groups" {
   value = concat([aws_security_group.cluster.id], local.extra_worker_security_groups)
 }
+
+output "default_worker_security_group_id" {
+  value = aws_security_group.cluster.id
+}
