@@ -14,9 +14,10 @@
 | kube\_api\_extra\_args | extra_args for kube-api | map | `"null"` | no |
 | kube\_controller\_extra\_args | extra_args for kube-controller | map | `"null"` | no |
 | kubelet\_extra\_args | extra_args for kubelet | map | `"null"` | no |
-| kubernetes\_version | Version of Kubernetes to install | string | `"v1.15.5-rancher1-2"` | no |
+| kubernetes\_version | Version of Kubernetes to install | string | `"v1.17.0-rancher1-2"` | no |
 | master\_instance\_type | Instance Types for K8S Master nodes | string | `"m5a.large"` | no |
 | master\_node\_count | Number of Master nodes to provision | number | `"3"` | no |
+| master\_tags | Map of tags for master nodes to merge with defaults | map | `{}` | no |
 | name | Name to identify Kubernetes cluster | string | n/a | yes |
 | private\_subnets | A list of private subnets to create ec2 instances in | list(string) | n/a | yes |
 | rancher\_api\_url | URL for Rancher API | string | n/a | yes |
@@ -27,11 +28,18 @@
 | vpc\_id | VPC ID for this cluster to be created in. | string | n/a | yes |
 | worker\_instance\_type | Instance Types for K8S Worker nodes | string | `"m5a.large"` | no |
 | worker\_node\_count | Number of Worker nodes to provision | number | `"3"` | no |
+| worker\_tags | Map of tags for worker nodes to merge with defaults | map | `{}` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | cluster\_id |  |
+| default\_worker\_security\_group\_id |  |
+| master\_tags |  |
+| registration\_command |  |
+| worker\_instance\_profile |  |
+| worker\_security\_groups |  |
+| worker\_tags |  |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
