@@ -293,6 +293,13 @@ resource "aws_iam_role_policy" "cloud_provider_worker" {
         "waf:GetWebACL"
       ],
       "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:AssociateAddress",
+        "ec2:DescribeAddresses"
+      ]
     }
   ]
 }
