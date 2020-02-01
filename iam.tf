@@ -299,7 +299,8 @@ resource "aws_iam_role_policy" "cloud_provider_worker" {
       "Action": [
         "ec2:AssociateAddress",
         "ec2:DescribeAddresses"
-      ]
+      ],
+      "Resource": "*"
     }
   ]
 }
