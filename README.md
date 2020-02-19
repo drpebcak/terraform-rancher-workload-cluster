@@ -45,6 +45,7 @@
 | default\_worker\_security\_group\_id | n/a |
 | master\_tags | n/a |
 | registration\_command | n/a |
+| worker\_iam\_role | n/a |
 | worker\_instance\_profile | n/a |
 | worker\_security\_groups | n/a |
 | worker\_tags | n/a |
