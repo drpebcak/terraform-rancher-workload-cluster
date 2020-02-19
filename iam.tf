@@ -301,7 +301,19 @@ resource "aws_iam_role_policy" "cloud_provider_worker" {
         "ec2:DescribeAddresses"
       ],
       "Resource": "*"
+    },
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+    {
+      "Action": [
+        "sts:AssumeRole"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
     }
+  ]
+}
   ]
 }
 EOF
