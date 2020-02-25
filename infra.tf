@@ -51,15 +51,6 @@ resource "aws_security_group_rule" "cluster_ingress_https" {
   security_group_id = aws_security_group.cluster.id
 }
 
-resource "aws_security_group_rule" "cluster_ingress_nodeports" {
-  type              = "ingress"
-  from_port         = 30000
-  to_port           = 32767
-  protocol          = "TCP"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.cluster.id
-}
-
 resource "aws_security_group_rule" "cluster_egress_all" {
   type              = "egress"
   from_port         = 0
