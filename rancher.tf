@@ -12,6 +12,15 @@ resource "rancher2_cluster" "cluster" {
     cloud_provider {
       name = local.cloud_provider_name
     }
+    upgrade_strategy {
+      drain                  = local.upgrade_drain
+      max_unavailable_worker = local.upgrade_max_unavailable_worker
+      drain_input {
+        delete_local_data = local.drain_delete_local_data
+        force             = local.drain_force
+        timeout           = local.drain_timeout
+      }
+    }
     services {
       kubelet {
         extra_args = local.kubelet_extra_args

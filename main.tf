@@ -32,6 +32,12 @@ locals {
 
   master_tags = merge({ Name = "${local.name}-master", "kubernetes.io/cluster/${local.name}" = "owned" }, var.master_tags)
   worker_tags = merge({ Name = "${local.name}-worker", "kubernetes.io/cluster/${local.name}" = "owned" }, var.worker_tags)
+
+  upgrade_drain                  = var.upgrade_drain
+  upgrade_max_unavailable_worker = var.upgrade_max_unavailable_worker
+  drain_delete_local_data        = var.drain_delete_local_data
+  drain_force                    = var.drain_force
+  drain_timeout                  = var.drain_timeout
 }
 
 provider "aws" {

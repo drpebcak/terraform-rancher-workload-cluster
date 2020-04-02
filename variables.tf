@@ -147,3 +147,33 @@ variable "worker_tags" {
   type        = map
   description = "Map of tags for worker nodes to merge with defaults"
 }
+
+variable "upgrade_drain" {
+  default     = false
+  type        = bool
+  description = "Drain RKE Nodes"
+}
+
+variable "drain_delete_local_data" {
+  default     = false
+  type        = bool
+  description = "Delete local data while draining"
+}
+
+variable "upgrade_max_unavailable_worker" {
+  default     = "10%"
+  type        = string
+  description = "Number or percentage of workers that can be unavailable at the same time"
+}
+
+variable "drain_force" {
+  default     = false
+  type        = bool
+  description = "Force the drain of RKE Nodes"
+}
+
+variable "drain_timeout" {
+  default     = 60
+  type        = int
+  description = "Node drain timeout"
+}

@@ -16,6 +16,9 @@
 | cloud\_provider\_name | RKE Cloud Provider name to enable | `string` | `"aws"` | no |
 | cluster\_description | Description of K8S clusters for Rancher | `string` | `"Terraform managed RKE cluster"` | no |
 | deploy\_user\_enabled | Define whether to give permissions for a deploy user | `bool` | `true` | no |
+| drain\_delete\_local\_data | Delete local data while draining | `bool` | `false` | no |
+| drain\_force | Force the drain of RKE Nodes | `bool` | `false` | no |
+| drain\_timeout | Node drain timeout | `int` | `60` | no |
 | extra\_master\_security\_groups | A list of extra security groups to assign to master nodes | `list(string)` | `[]` | no |
 | extra\_worker\_security\_groups | A list of extra security groups to assign to worker nodes | `list(string)` | `[]` | no |
 | kube\_api\_extra\_args | extra\_args for kube-api | `map` | n/a | yes |
@@ -32,6 +35,8 @@
 | rancher\_token\_key | API Token for Rancher Admin | `string` | n/a | yes |
 | scheduler\_extra\_args | extra\_args for kube-scheduler | `map` | n/a | yes |
 | ssh\_keys | Public SSH keys to give to instances | `list(string)` | <pre>[<br>  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5O7k6gRYCU7YPkCH6dyXVW10izMAkDAQtQxNxdRE22 drpebcak"<br>]</pre> | no |
+| upgrade\_drain | Drain RKE Nodes | `bool` | `false` | no |
+| upgrade\_max\_unavailable\_worker | Number or percentage of workers that can be unavailable at the same time | `string` | `"10%"` | no |
 | vpc\_id | VPC ID for this cluster to be created in. | `string` | n/a | yes |
 | worker\_instance\_type | Instance Types for K8S Worker nodes | `string` | `"m5a.large"` | no |
 | worker\_node\_count | Number of Worker nodes to provision | `number` | `3` | no |
