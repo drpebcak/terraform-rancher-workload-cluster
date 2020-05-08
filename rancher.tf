@@ -8,6 +8,9 @@ resource "rancher2_cluster" "cluster" {
   description = local.cluster_description
 
   rke_config {
+    ingress {
+      provider = local.ingress_provider
+    }
     kubernetes_version = local.kubernetes_version
     cloud_provider {
       name = local.cloud_provider_name
@@ -23,13 +26,17 @@ resource "rancher2_cluster" "cluster" {
     }
     services {
       kubelet {
-        extra_args = local.kubelet_extra_args
+        extra_args         = local.kubelet_extra_args
+        cluster_dns_server = local.cluster_dns_server
       }
       kube_api {
-        extra_args = local.kube_api_extra_args
+        extra_args               = local.kube_api_extra_args
+        service_cluster_ip_range = local.service_cluster_ip_range
       }
       kube_controller {
-        extra_args = local.kube_controller_extra_args
+        extra_args               = local.kube_controller_extra_args
+        cluster_cidr             = local.cluster_cidr
+        service_cluster_ip_range = local.service_cluster_ip_range
       }
       scheduler {
         extra_args = local.scheduler_extra_args

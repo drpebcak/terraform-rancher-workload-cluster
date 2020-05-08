@@ -174,6 +174,31 @@ variable "drain_force" {
 
 variable "drain_timeout" {
   default     = 60
-  type        = int
+  type        = number
   description = "Node drain timeout"
 }
+
+variable "ingress_provider" {
+  default     = null
+  type        = string
+  description = "Provider for ingress. Either 'nginx' or 'none'"
+}
+
+variable "cluster_cidr" {
+  default     = null
+  type        = string
+  description = "Cidr to use for overlay network"
+}
+
+variable "service_cluster_ip_range" {
+  default     = null
+  type        = string
+  description = "Cidr to use for services"
+}
+
+variable "cluster_dns_server" {
+  default     = null
+  type        = string
+  description = "IP for cluster dns service. Should be within service_cluster_ip_range"
+}
+

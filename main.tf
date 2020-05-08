@@ -29,6 +29,10 @@ locals {
   kube_controller_extra_args = var.kube_controller_extra_args
   kube_api_extra_args        = var.kube_api_extra_args
   kubelet_extra_args         = var.kubelet_extra_args
+  ingress_provider           = var.ingress_provider
+  cluster_cidr               = var.cluster_cidr
+  service_cluster_ip_range   = var.service_cluster_ip_range
+  cluster_dns_server         = var.cluster_dns_server
 
   master_tags = merge({ Name = "${local.name}-master", "kubernetes.io/cluster/${local.name}" = "owned" }, var.master_tags)
   worker_tags = merge({ Name = "${local.name}-worker", "kubernetes.io/cluster/${local.name}" = "owned" }, var.worker_tags)
