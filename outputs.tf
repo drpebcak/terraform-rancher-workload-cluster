@@ -18,6 +18,10 @@ output "worker_instance_profile" {
   value = aws_iam_instance_profile.cloud_provider_worker.arn
 }
 
+output "worker_instance_profile_name" {
+  value = aws_iam_instance_profile.cloud_provider_worker.name
+}
+
 output "worker_iam_role" {
   value = aws_iam_role.cloud_provider_worker.arn
 }

@@ -62,6 +62,7 @@
 | registration\_command | n/a |
 | worker\_iam\_role | n/a |
 | worker\_instance\_profile | n/a |
+| worker\_instance\_profile\_name | n/a |
 | worker\_security\_groups | n/a |
 | worker\_tags | n/a |
 
