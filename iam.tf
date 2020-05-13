@@ -204,6 +204,7 @@ resource "aws_iam_role_policy" "cloud_provider_worker" {
         "ec2:DescribeInstanceStatus",
         "ec2:DescribeInternetGateways",
         "ec2:DescribeNetworkInterfaces",
+        "ec2:AttachNetworkInterface",
         "ec2:DescribeSecurityGroups",
         "ec2:DescribeSubnets",
         "ec2:DescribeTags",
