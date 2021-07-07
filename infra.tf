@@ -87,7 +87,7 @@ resource "aws_launch_template" "master" {
 
     ebs {
       encrypted   = true
-      volume_type = "gp2"
+      volume_type = local.master_volume_type
       volume_size = "50"
     }
   }
@@ -134,7 +134,7 @@ resource "aws_launch_template" "worker" {
 
     ebs {
       encrypted   = true
-      volume_type = "gp2"
+      volume_type = local.worker_volume_type
       volume_size = "50"
     }
   }

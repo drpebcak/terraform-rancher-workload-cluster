@@ -15,9 +15,21 @@ variable "master_instance_type" {
   type        = string
 }
 
+variable "master_volume_type" {
+  default     = "gp3"
+  description = "Volume Type for K8S Master nodes"
+  type        = string
+}
+
 variable "worker_instance_type" {
   default     = "m5a.large"
   description = "Instance Types for K8S Worker nodes"
+  type        = string
+}
+
+variable "worker_volume_type" {
+  default     = "gp3"
+  description = "Volume Type for K8S Worker nodes"
   type        = string
 }
 
@@ -114,37 +126,37 @@ variable "extra_master_security_groups" {
 
 variable "scheduler_extra_args" {
   default     = null
-  type        = map
+  type        = map(any)
   description = "extra_args for kube-scheduler"
 }
 
 variable "kube_controller_extra_args" {
   default     = null
-  type        = map
+  type        = map(any)
   description = "extra_args for kube-controller"
 }
 
 variable "kube_api_extra_args" {
   default     = null
-  type        = map
+  type        = map(any)
   description = "extra_args for kube-api"
 }
 
 variable "kubelet_extra_args" {
   default     = null
-  type        = map
+  type        = map(any)
   description = "extra_args for kubelet"
 }
 
 variable "master_tags" {
   default     = {}
-  type        = map
+  type        = map(any)
   description = "Map of tags for master nodes to merge with defaults"
 }
 
 variable "worker_tags" {
   default     = {}
-  type        = map
+  type        = map(any)
   description = "Map of tags for worker nodes to merge with defaults"
 }
 

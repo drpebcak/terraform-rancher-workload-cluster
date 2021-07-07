@@ -8,7 +8,9 @@ locals {
   master_instance_type  = var.master_instance_type
   worker_instance_type  = var.worker_instance_type
   master_node_count     = var.master_node_count
+  master_volume_type    = var.master_volume_type
   worker_node_count     = var.worker_node_count
+  worker_volume_type    = var.worker_volume_type
   ssh_keys              = var.ssh_keys
   cluster_description   = var.cluster_description
   kubernetes_version    = var.kubernetes_version
