@@ -95,6 +95,7 @@ resource "aws_iam_role_policy" "cloud_provider_master" {
         "elasticloadbalancing:ModifyListener",
         "elasticloadbalancing:ModifyTargetGroup",
         "elasticloadbalancing:RegisterTargets",
+        "elasticloadbalancing:DeregisterTargets",
         "elasticloadbalancing:SetLoadBalancerPoliciesOfListener",
         "iam:CreateServiceLinkedRole",
         "kms:DescribeKey"
@@ -199,6 +200,7 @@ resource "aws_iam_role_policy" "cloud_provider_worker" {
         "ec2:DeleteSecurityGroup",
         "ec2:DescribeAccountAttributes",
         "ec2:DescribeAddresses",
+        "ec2:DescribeAvailabilityZones",
         "ec2:DescribeInstances",
         "ec2:DescribeInstanceStatus",
         "ec2:DescribeInternetGateways",
@@ -208,6 +210,8 @@ resource "aws_iam_role_policy" "cloud_provider_worker" {
         "ec2:DescribeSubnets",
         "ec2:DescribeTags",
         "ec2:DescribeVpcs",
+        "ec2:GetCoipPoolUsage",
+        "ec2:DescribeCoipPools",
         "ec2:ModifyInstanceAttribute",
         "ec2:ModifyNetworkInterfaceAttribute",
         "ec2:RevokeSecurityGroupIngress"
@@ -249,7 +253,7 @@ resource "aws_iam_role_policy" "cloud_provider_worker" {
         "elasticloadbalancing:SetIpAddressType",
         "elasticloadbalancing:SetSecurityGroups",
         "elasticloadbalancing:SetSubnets",
-        "elasticloadbalancing:SetWebACL"
+        "elasticloadbalancing:SetWebAcl"
       ],
       "Resource": "*"
     },
