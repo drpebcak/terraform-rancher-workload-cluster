@@ -45,7 +45,3 @@ locals {
   drain_force                    = var.drain_force
   drain_timeout                  = var.drain_timeout
 }
-
-provider "aws" {
-  region = local.aws_region
-}
