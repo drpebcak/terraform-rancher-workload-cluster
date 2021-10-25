@@ -32,6 +32,9 @@ resource "rancher2_cluster" "cluster" {
       kube_api {
         extra_args               = local.kube_api_extra_args
         service_cluster_ip_range = local.service_cluster_ip_range
+        secrets_encryption_config {
+          enabled = true
+        }
       }
       kube_controller {
         extra_args               = local.kube_controller_extra_args
