@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "etcd_backups" {
-  bucket        = "${local.name}-etcd-backup"
+  bucket_prefix = "${local.name}-etcd-backup"
   acl           = "private"
   force_destroy = true
 
