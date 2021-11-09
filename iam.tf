@@ -103,6 +103,13 @@ resource "aws_iam_role_policy" "cloud_provider_master" {
       "Resource": [
         "*"
       ]
+    },
+    {
+      "Action": [
+        "sts:AssumeRole"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
     }
   ]
 }
@@ -165,6 +172,13 @@ resource "aws_iam_role_policy" "cloud_provider_worker" {
         "ecr:ListImages",
         "ecr:BatchGetImage"
       ],
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "sts:AssumeRole"
+      ],
+      "Effect": "Allow",
       "Resource": "*"
     }
   ]
