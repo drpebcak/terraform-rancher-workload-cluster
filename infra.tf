@@ -2,17 +2,20 @@ resource "aws_s3_bucket" "etcd_backups" {
   bucket_prefix = "${local.name}-etcd-backup"
   acl           = "private"
   force_destroy = true
+}
 
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "aws:kms"
-      }
+resource "aws_s3_bucket_acl" "etcd_backups_acl" {
+  bucket = aws_s3_bucket.etcd_backups.id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "etcd_backups_server_side_encryption_configuration" {
+  bucket = aws_s3_bucket.etcd_backups.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm     = "aws:kms"
     }
-  }
-
-  versioning {
-    enabled = true
   }
 }
 
