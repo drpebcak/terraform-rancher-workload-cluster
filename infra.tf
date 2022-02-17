@@ -8,6 +8,13 @@ resource "aws_s3_bucket_acl" "etcd_backups_acl" {
   acl    = "private"
 }
 
+resource "aws_s3_bucket_versioning" "etcd_backups_versioning" {
+  bucket = aws_s3_bucket.etcd_backups.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_bucket_server_side_encryption_configuration" "etcd_backups_server_side_encryption_configuration" {
   bucket = aws_s3_bucket.etcd_backups.id
 
