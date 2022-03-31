@@ -10,7 +10,7 @@ variable "aws_region" {
 }
 
 variable "master_instance_type" {
-  default     = "m5a.large"
+  default     = "m6a.large"
   description = "Instance Types for K8S Master nodes"
   type        = string
 }
@@ -22,7 +22,7 @@ variable "master_volume_type" {
 }
 
 variable "worker_instance_type" {
-  default     = "m5a.large"
+  default     = "m6a.large"
   description = "Instance Types for K8S Worker nodes"
   type        = string
 }
