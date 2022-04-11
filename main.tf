@@ -44,4 +44,6 @@ locals {
   drain_delete_local_data        = var.drain_delete_local_data
   drain_force                    = var.drain_force
   drain_timeout                  = var.drain_timeout
+  cluster_auth_endpoint_enabled = var.cluster_auth_endpoint_enabled
+  cluster_auth_endpoint_fqdn      = var.cluster_auth_endpoint_fqdn
 }

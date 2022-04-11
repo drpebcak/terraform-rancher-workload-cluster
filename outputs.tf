@@ -2,7 +2,11 @@ output "cluster_id" {
   value = rancher2_cluster.cluster.id
 }
 
-output "registration_command" {
+output "cluster_auth_endpoint" {
+  value = rancher2_cluster.cluster.cluster_auth_endpoint.fqdn
+}
+
+  output "registration_command" {
   value = rancher2_cluster.cluster.cluster_registration_token[0]["node_command"]
 }
 

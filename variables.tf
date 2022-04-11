@@ -214,3 +214,14 @@ variable "cluster_dns_server" {
   description = "IP for cluster dns service. Should be within service_cluster_ip_range"
 }
 
+variable "cluster_auth_endpoint_fqdn" {
+  default = null
+  description = "fqdn for cluster auth endpoint"
+  type = string
+}
+
+variable "cluster_auth_endpoint_enabled" {
+  default = false
+  description = "Enable cluster auth endpoint"
+  type = bool
+}
