@@ -146,7 +146,7 @@ resource "aws_lb" "fqdn" {
 
 resource "aws_lb_target_group" "fqdn" {
   count    = local.cluster_auth_endpoint_enabled ? 1 : 0
-  name     = "${local.name}-fqdn"
+  name_prefix     = "fqdn"
   port     = 6443
   protocol = "TCP"
   vpc_id   = local.vpc_id
