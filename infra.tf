@@ -133,7 +133,7 @@ resource "aws_autoscaling_group" "master" {
 
 resource "aws_lb" "fqdn" {
   count              = local.cluster_auth_endpoint_enabled ? 1 : 0
-  name_prefix        = "${local.name}-fqdn"
+  name               = "${local.name}-fqdn"
   internal           = local.cluster_auth_endpoint_internal
   load_balancer_type = "network"
   subnets            = local.public_subnets
@@ -145,18 +145,18 @@ resource "aws_lb" "fqdn" {
 }
 
 resource "aws_lb_target_group" "fqdn" {
-  count       = local.cluster_auth_endpoint_enabled ? 1 : 0
-  name_prefix = "${local.name}-fqdn"
-  port        = 443
-  protocol    = "TCP"
-  vpc_id      = local.vpc_id
-  tags        = local.master_tags
+  count    = local.cluster_auth_endpoint_enabled ? 1 : 0
+  name     = "${local.name}-fqdn"
+  port     = 443
+  protocol = "TCP"
+  vpc_id   = local.vpc_id
+  tags     = local.master_tags
 }
 
 resource "aws_autoscaling_attachment" "fqdn" {
   count                  = local.cluster_auth_endpoint_enabled ? 1 : 0
   autoscaling_group_name = aws_autoscaling_group.master.id
-  lb_target_group_arn    = aws_lb_target_group.fqdn[0].arn
+  lb_target_group_arn    = aws_lb_target_group.fqdn[ 0 ].arn
 }
 
 ####
