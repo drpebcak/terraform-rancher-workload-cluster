@@ -70,6 +70,7 @@ resource "aws_security_group_rule" "cluster_ingress_https" {
 }
 
 resource "aws_security_group_rule" "cluster_ingress_6443" {
+  count    = local.cluster_auth_endpoint_enabled ? 1 : 0
   type              = "ingress"
   from_port         = 6443
   to_port           = 6443
