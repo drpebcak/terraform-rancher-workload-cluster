@@ -52,7 +52,7 @@ variable "deploy_user_enabled" {
 }
 
 variable "ssh_keys" {
-  default     = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5O7k6gRYCU7YPkCH6dyXVW10izMAkDAQtQxNxdRE22 drpebcak" ]
+  default     = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5O7k6gRYCU7YPkCH6dyXVW10izMAkDAQtQxNxdRE22 drpebcak"]
   description = "Public SSH keys to give to instances"
   type        = list(string)
 }
@@ -119,13 +119,13 @@ variable "public_subnets" {
 }
 
 variable "extra_worker_security_groups" {
-  default     = [ ]
+  default     = []
   type        = list(string)
   description = "A list of extra security groups to assign to worker nodes"
 }
 
 variable "extra_master_security_groups" {
-  default     = [ ]
+  default     = []
   type        = list(string)
   description = "A list of extra security groups to assign to master nodes"
 }

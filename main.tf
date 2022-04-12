@@ -21,7 +21,7 @@ locals {
   rancher_api_url       = var.rancher_api_url
   rancher_deploy_user   = var.rancher_deploy_user
   private_subnets       = var.private_subnets
-  public_subnets       = var.public_subnets
+  public_subnets        = var.public_subnets
   deploy_user_enabled   = var.deploy_user_enabled ? 1 : 0
   vpc_id                = var.vpc_id
 
