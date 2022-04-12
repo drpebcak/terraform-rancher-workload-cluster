@@ -69,6 +69,15 @@ resource "aws_security_group_rule" "cluster_ingress_https" {
   security_group_id = aws_security_group.cluster.id
 }
 
+resource "aws_security_group_rule" "cluster_ingress_6443" {
+  type              = "ingress"
+  from_port         = 6443
+  to_port           = 6443
+  protocol          = "TCP"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.cluster.id
+}
+
 resource "aws_security_group_rule" "cluster_egress_all" {
   type              = "egress"
   from_port         = 0
