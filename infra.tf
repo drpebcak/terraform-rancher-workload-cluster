@@ -159,6 +159,8 @@ resource "aws_lb_listener" "fqdn" {
   port              = "443"
   protocol          = "TCP"
 
+  tags = local.master_tags
+
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.fqdn[0].arn
