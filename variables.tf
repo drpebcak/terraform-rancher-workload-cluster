@@ -215,13 +215,13 @@ variable "cluster_dns_server" {
 }
 
 variable "cluster_auth_endpoint_fqdn" {
-  default = null
+  default     = null
   description = "fqdn for cluster auth endpoint"
-  type = string
+  type        = string
 }
 
 variable "cluster_auth_endpoint_enabled" {
-  default = false
+  default     = false
   description = "Enable cluster auth endpoint"
-  type = bool
+  type        = bool
 }

@@ -9,7 +9,7 @@ resource "rancher2_cluster" "cluster" {
 
   cluster_auth_endpoint {
     enabled = local.cluster_auth_endpoint_enabled
-    fqdn     = local.cluster_auth_endpoint_fqdn
+    fqdn    = local.cluster_auth_endpoint_fqdn
   }
 
   rke_config {
