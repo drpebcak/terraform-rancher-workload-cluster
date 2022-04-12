@@ -155,7 +155,7 @@ resource "aws_lb_target_group" "fqdn" {
 
 resource "aws_lb_listener" "fqdn" {
   count             = local.cluster_auth_endpoint_enabled ? 1 : 0
-  load_balancer_arn = aws_lb.fqdn.arn
+  load_balancer_arn = aws_lb.fqdn[0].arn
   port              = "443"
   protocol          = "TCP"
 
