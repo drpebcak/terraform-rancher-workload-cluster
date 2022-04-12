@@ -147,7 +147,7 @@ resource "aws_lb" "fqdn" {
 resource "aws_lb_target_group" "fqdn" {
   count    = local.cluster_auth_endpoint_enabled ? 1 : 0
   name     = "${local.name}-fqdn"
-  port     = 443
+  port     = 6443
   protocol = "TCP"
   vpc_id   = local.vpc_id
   tags     = local.master_tags
@@ -156,7 +156,7 @@ resource "aws_lb_target_group" "fqdn" {
 resource "aws_lb_listener" "fqdn" {
   count             = local.cluster_auth_endpoint_enabled ? 1 : 0
   load_balancer_arn = aws_lb.fqdn[0].arn
-  port              = "443"
+  port              = "6443"
   protocol          = "TCP"
 
   tags = local.master_tags
