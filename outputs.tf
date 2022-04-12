@@ -3,7 +3,7 @@ output "cluster_id" {
 }
 
 output "cluster_auth_endpoint" {
-  value = rancher2_cluster.cluster.cluster_auth_endpoint.fqdn
+  value = rancher2_cluster.cluster.cluster_auth_endpoint[0]["fqdn"]
 }
 
   output "registration_command" {
