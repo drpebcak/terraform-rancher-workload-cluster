@@ -151,6 +151,10 @@ resource "aws_lb_target_group" "fqdn" {
   protocol = "TCP"
   vpc_id   = local.vpc_id
   tags     = local.master_tags
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_lb_listener" "fqdn" {
