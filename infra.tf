@@ -37,7 +37,7 @@ resource "aws_s3_bucket_public_access_block" "etcd_backups" {
 resource "aws_security_group" "cluster" {
   name   = "${local.name}-cluster"
   vpc_id = local.vpc_id
-  tags = {
+  tags   = {
     "kubernetes.io/cluster/${var.name}" = "owned"
   }
 }
@@ -56,7 +56,7 @@ resource "aws_security_group_rule" "cluster_ingress_http" {
   from_port         = 80
   to_port           = 80
   protocol          = "TCP"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = [ "0.0.0.0/0" ]
   security_group_id = aws_security_group.cluster.id
 }
 
@@ -65,7 +65,7 @@ resource "aws_security_group_rule" "cluster_ingress_https" {
   from_port         = 443
   to_port           = 443
   protocol          = "TCP"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = [ "0.0.0.0/0" ]
   security_group_id = aws_security_group.cluster.id
 }
 
@@ -74,7 +74,7 @@ resource "aws_security_group_rule" "cluster_egress_all" {
   from_port         = 0
   to_port           = 0
   protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = [ "0.0.0.0/0" ]
   security_group_id = aws_security_group.cluster.id
 }
 
@@ -85,7 +85,10 @@ resource "aws_launch_template" "master" {
   name_prefix   = "${local.name}-master"
   image_id      = data.aws_ami.ubuntu.id
   instance_type = local.master_instance_type
-  user_data     = base64gzip(templatefile("${path.module}/files/cloud-config.yaml", { registration_command = "${rancher2_cluster.cluster.cluster_registration_token[0]["node_command"]} --etcd --controlplane", ssh_keys = local.ssh_keys }))
+  user_data     = base64gzip(templatefile("${path.module}/files/cloud-config.yaml", {
+    registration_command = "${rancher2_cluster.cluster.cluster_registration_token[0]["node_command"]} --etcd --controlplane",
+    ssh_keys             = local.ssh_keys
+  }))
 
   iam_instance_profile {
     arn = aws_iam_instance_profile.cloud_provider_master.arn
@@ -103,7 +106,7 @@ resource "aws_launch_template" "master" {
 
   network_interfaces {
     delete_on_termination = true
-    security_groups       = concat([aws_security_group.cluster.id], local.extra_master_security_groups)
+    security_groups       = concat([ aws_security_group.cluster.id ], local.extra_master_security_groups)
   }
 
   tags = local.master_tags
@@ -127,12 +130,44 @@ resource "aws_autoscaling_group" "master" {
     version = "$Latest"
   }
 }
+
+resource "aws_lb" "fqdn" {
+  count              = local.cluster_auth_endpoint_enabled ? 1 : 0
+  name_prefix        = "${local.name}-fqdn"
+  internal           = local.cluster_auth_endpoint_internal
+  load_balancer_type = "network"
+  subnets            = local.public_subnets
+
+  enable_cross_zone_load_balancing = true
+  enable_deletion_protection       = true
+
+  tags = local.master_tags
+}
+
+resource "aws_lb_target_group" "fqdn" {
+  count       = local.cluster_auth_endpoint_enabled ? 1 : 0
+  name_prefix = "${local.name}-fqdn"
+  port        = 443
+  protocol    = "TCP"
+  vpc_id      = local.vpc_id
+  tags        = local.master_tags
+}
+
+resource "aws_autoscaling_attachment" "fqdn" {
+  count                  = local.cluster_auth_endpoint_enabled ? 1 : 0
+  autoscaling_group_name = aws_autoscaling_group.master.id
+  lb_target_group_arn    = aws_lb_target_group.fqdn[0].arn
+}
+
 ####
 resource "aws_launch_template" "worker" {
   name_prefix   = "${local.name}-worker"
   image_id      = data.aws_ami.ubuntu.id
   instance_type = local.worker_instance_type
-  user_data     = base64gzip(templatefile("${path.module}/files/cloud-config.yaml", { registration_command = "${rancher2_cluster.cluster.cluster_registration_token[0]["node_command"]} --worker", ssh_keys = local.ssh_keys }))
+  user_data     = base64gzip(templatefile("${path.module}/files/cloud-config.yaml", {
+    registration_command = "${rancher2_cluster.cluster.cluster_registration_token[0]["node_command"]} --worker",
+    ssh_keys             = local.ssh_keys
+  }))
 
   iam_instance_profile {
     arn = aws_iam_instance_profile.cloud_provider_worker.arn
@@ -150,7 +185,7 @@ resource "aws_launch_template" "worker" {
 
   network_interfaces {
     delete_on_termination = true
-    security_groups       = concat([aws_security_group.cluster.id], local.extra_worker_security_groups)
+    security_groups       = concat([ aws_security_group.cluster.id ], local.extra_worker_security_groups)
   }
 
   tags = local.worker_tags

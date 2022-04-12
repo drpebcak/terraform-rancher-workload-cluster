@@ -21,6 +21,7 @@ locals {
   rancher_api_url       = var.rancher_api_url
   rancher_deploy_user   = var.rancher_deploy_user
   private_subnets       = var.private_subnets
+  public_subnets       = var.public_subnets
   deploy_user_enabled   = var.deploy_user_enabled ? 1 : 0
   vpc_id                = var.vpc_id
 
@@ -46,4 +47,5 @@ locals {
   drain_timeout                  = var.drain_timeout
   cluster_auth_endpoint_enabled  = var.cluster_auth_endpoint_enabled
   cluster_auth_endpoint_fqdn     = var.cluster_auth_endpoint_fqdn
+  cluster_auth_endpoint_internal = var.cluster_auth_endpoint_internal
 }

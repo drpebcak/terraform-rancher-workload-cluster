@@ -52,7 +52,7 @@ variable "deploy_user_enabled" {
 }
 
 variable "ssh_keys" {
-  default     = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5O7k6gRYCU7YPkCH6dyXVW10izMAkDAQtQxNxdRE22 drpebcak"]
+  default     = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5O7k6gRYCU7YPkCH6dyXVW10izMAkDAQtQxNxdRE22 drpebcak" ]
   description = "Public SSH keys to give to instances"
   type        = list(string)
 }
@@ -112,14 +112,20 @@ variable "private_subnets" {
   description = "A list of private subnets to create ec2 instances in"
 }
 
+variable "public_subnets" {
+  default     = null
+  type        = list(string)
+  description = "A list of public subnets to create ec2 instances in"
+}
+
 variable "extra_worker_security_groups" {
-  default     = []
+  default     = [ ]
   type        = list(string)
   description = "A list of extra security groups to assign to worker nodes"
 }
 
 variable "extra_master_security_groups" {
-  default     = []
+  default     = [ ]
   type        = list(string)
   description = "A list of extra security groups to assign to master nodes"
 }
@@ -223,5 +229,11 @@ variable "cluster_auth_endpoint_fqdn" {
 variable "cluster_auth_endpoint_enabled" {
   default     = false
   description = "Enable cluster auth endpoint"
+  type        = bool
+}
+
+variable "cluster_auth_endpoint_internal" {
+  default     = false
+  description = "Controls whether the load balancer for the cluster fqdn will be public or internal"
   type        = bool
 }
