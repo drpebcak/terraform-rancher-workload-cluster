@@ -37,6 +37,7 @@ locals {
   cluster_cidr               = var.cluster_cidr
   service_cluster_ip_range   = var.service_cluster_ip_range
   cluster_dns_server         = var.cluster_dns_server
+  nodelocal_ip_address       = var.nodelocal_ip_address
 
   master_tags = merge({ Name = "${local.name}-master", "kubernetes.io/cluster/${local.name}" = "owned" }, var.master_tags)
   worker_tags = merge({ Name = "${local.name}-worker", "kubernetes.io/cluster/${local.name}" = "owned" }, var.worker_tags)
