@@ -32,6 +32,7 @@ locals {
   kube_controller_extra_args = var.kube_controller_extra_args
   kube_api_extra_args        = var.kube_api_extra_args
   kubelet_extra_args         = var.kubelet_extra_args
+  kube_proxy_extra_args      = var.kube_proxy_extra_args
   ingress_provider           = var.ingress_provider
   cluster_cidr               = var.cluster_cidr
   service_cluster_ip_range   = var.service_cluster_ip_range

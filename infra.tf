@@ -70,7 +70,7 @@ resource "aws_security_group_rule" "cluster_ingress_https" {
 }
 
 resource "aws_security_group_rule" "cluster_ingress_6443" {
-  count    = local.cluster_auth_endpoint_enabled ? 1 : 0
+  count             = local.cluster_auth_endpoint_enabled ? 1 : 0
   type              = "ingress"
   from_port         = 6443
   to_port           = 6443
@@ -155,12 +155,12 @@ resource "aws_lb" "fqdn" {
 }
 
 resource "aws_lb_target_group" "fqdn" {
-  count    = local.cluster_auth_endpoint_enabled ? 1 : 0
-  name_prefix     = "fqdn"
-  port     = 6443
-  protocol = "TCP"
-  vpc_id   = local.vpc_id
-  tags     = local.master_tags
+  count       = local.cluster_auth_endpoint_enabled ? 1 : 0
+  name_prefix = "fqdn"
+  port        = 6443
+  protocol    = "TCP"
+  vpc_id      = local.vpc_id
+  tags        = local.master_tags
 
   lifecycle {
     create_before_destroy = true

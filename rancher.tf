@@ -34,6 +34,9 @@ resource "rancher2_cluster" "cluster" {
         extra_args         = local.kubelet_extra_args
         cluster_dns_server = local.cluster_dns_server
       }
+      kube_proxy {
+        extra_args = local.kube_proxy_extra_args
+      }
       kube_api {
         extra_args               = local.kube_api_extra_args
         service_cluster_ip_range = local.service_cluster_ip_range
