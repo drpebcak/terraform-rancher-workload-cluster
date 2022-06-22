@@ -243,3 +243,9 @@ variable "cluster_auth_endpoint_internal" {
   description = "Controls whether the load balancer for the cluster fqdn will be public or internal"
   type        = bool
 }
+
+variable "nodelocal_ip_address" {
+  default     = null
+  description = "Defines the static and cluster-unique IP used for the nodelocal dns pod"
+  type        = string
+}
