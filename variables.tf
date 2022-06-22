@@ -245,7 +245,7 @@ variable "cluster_auth_endpoint_internal" {
 }
 
 variable "nodelocal_ip_address" {
-  default     = ""
+  default     = null
   description = "Defines the static and cluster-unique IP used for the nodelocal dns pod"
   type        = string
 }
