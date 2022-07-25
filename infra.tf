@@ -97,7 +97,8 @@ resource "aws_launch_template" "master" {
   instance_type = local.master_instance_type
   user_data = base64gzip(templatefile("${path.module}/files/cloud-config.yaml", {
     registration_command = "${rancher2_cluster.cluster.cluster_registration_token[0]["node_command"]} --etcd --controlplane",
-    ssh_keys             = local.ssh_keys
+    ssh_keys             = local.ssh_keys,
+    extra_cmds           = local.extra_cmds
   }))
 
   iam_instance_profile {
@@ -194,7 +195,8 @@ resource "aws_launch_template" "worker" {
   instance_type = local.worker_instance_type
   user_data = base64gzip(templatefile("${path.module}/files/cloud-config.yaml", {
     registration_command = "${rancher2_cluster.cluster.cluster_registration_token[0]["node_command"]} --worker",
-    ssh_keys             = local.ssh_keys
+    ssh_keys             = local.ssh_keys,
+    extra_cmds           = local.extra_cmds
   }))
 
   iam_instance_profile {

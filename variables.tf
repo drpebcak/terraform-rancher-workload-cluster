@@ -249,3 +249,9 @@ variable "nodelocal_ip_address" {
   description = "Defines the static and cluster-unique IP used for the nodelocal dns pod"
   type        = string
 }
+
+variable "extra_cmds" {
+  default     = []
+  description = "List of extra commands to run during cloud init"
+  type        = list(string)
+}

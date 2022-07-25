@@ -71,7 +71,7 @@ resource "rancher2_cluster" "cluster" {
     }
     dns {
       nodelocal {
-        ip_address    = local.nodelocal_ip_address
+        ip_address = local.nodelocal_ip_address
       }
     }
   }

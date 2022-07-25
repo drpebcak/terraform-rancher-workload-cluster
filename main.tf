@@ -12,6 +12,7 @@ locals {
   worker_node_count     = var.worker_node_count
   worker_volume_type    = var.worker_volume_type
   ssh_keys              = var.ssh_keys
+  extra_cmds            = var.extra_cmds
   cluster_description   = var.cluster_description
   kubernetes_version    = var.kubernetes_version
   cloud_provider_name   = var.cloud_provider_name
