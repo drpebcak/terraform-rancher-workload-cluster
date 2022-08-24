@@ -51,4 +51,11 @@ locals {
   cluster_auth_endpoint_enabled  = var.cluster_auth_endpoint_enabled
   cluster_auth_endpoint_fqdn     = var.cluster_auth_endpoint_fqdn
   cluster_auth_endpoint_internal = var.cluster_auth_endpoint_internal
+
+  kube_api_audit_log_enabled = var.kube_api_audit_log_enabled
+  kube_api_audit_log_config_max_age = var.kube_api_audit_log_config_max_age
+  kube_api_audit_log_config_max_backup = var.kube_api_audit_log_config_max_backup
+  kube_api_audit_log_config_max_size = var.kube_api_audit_log_config_max_size
+  kube_api_audit_log_config_path = var.kube_api_audit_log_config_path
+  kube_api_audit_log_config_format = var.kube_api_audit_log_config_format
 }

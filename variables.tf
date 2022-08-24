@@ -255,3 +255,39 @@ variable "extra_cmds" {
   description = "List of extra commands to run during cloud init"
   type        = list(string)
 }
+
+variable "kube_api_audit_log_enabled" {
+  default = false
+  description = "Enable kube-apiserver audit logging"
+  type = bool
+}
+
+variable "kube_api_audit_log_config_max_age" {
+  default = 1
+  description = "The maximum number of days to retain old audit log files"
+  type = number
+}
+
+variable "kube_api_audit_log_config_max_backup" {
+  default = 2
+  description = "The maximum number of audit log files to retain"
+  type = number
+}
+
+variable "kube_api_audit_log_config_max_size" {
+  default = 100
+  description = "The maximum size in megabytes of the audit log file before it gets rotated"
+  type = number
+}
+
+variable "kube_api_audit_log_config_path" {
+  default = "/var/log/kube-audit/audit-log.json"
+  description = "The log file path that log backend uses to write audit events"
+  type = string
+}
+
+variable "kube_api_audit_log_config_format" {
+  default = "json"
+  description = "The log file format"
+  type = string
+}

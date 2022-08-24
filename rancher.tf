@@ -43,6 +43,17 @@ resource "rancher2_cluster" "cluster" {
         secrets_encryption_config {
           enabled = true
         }
+        audit_log {
+          enabled = local.kube_api_audit_log_enabled
+          configuration {
+            max_age = local.kube_api_audit_log_config_max_age
+            max_backup = local.kube_api_audit_log_config_max_backup
+            max_size = local.kube_api_audit_log_config_max_size
+            path = local.kube_api_audit_log_config_path
+            format = local.kube_api_audit_log_config_format
+            policy = file("${path.module}/files/auditlog_policy.yaml")
+          }
+        }
       }
       kube_controller {
         extra_args               = local.kube_controller_extra_args
